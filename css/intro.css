@@ -1,0 +1,355 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* SPLASH */
+.splash {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(#162a6a, #050814);
+    overflow: hidden;
+}
+
+/* =====================
+   YELLOW LIGHTNING GLOW
+===================== */
+
+.lightning-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 214, 102, 0.28),
+        rgba(255, 214, 102, 0.12),
+        transparent 60%
+    );
+    filter: blur(90px);
+    animation: lightningPulse 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes lightningPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.6; }
+}
+
+/* =====================
+   COINS — LEFT (LOWER)
+===================== */
+
+.coins-area {
+    position: absolute;
+    left: 12px;
+    top: 72%;
+    width: 100px;
+    z-index: 2;
+}
+
+.coin {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff6b0, #d4a017 60%, #9e7c0c);
+    border: 3px solid #f5d76e;
+    color: #8a6a00;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 0 0 6px rgba(255,255,255,0.6),
+        inset 0 -4px 6px rgba(0,0,0,0.3),
+        0 8px 14px rgba(0,0,0,0.5),
+        0 0 12px rgba(255, 215, 100, 0.5);
+    animation: coinDrop 1.6s ease-out forwards;
+}
+
+.c1 { left: 0; }
+.c2 { left: 20px; animation-delay: 0.15s; }
+.c3 { left: 40px; animation-delay: 0.3s; }
+.c4 { left: 10px; animation-delay: 0.45s; }
+
+@keyframes coinDrop {
+    to { transform: translateY(190px); }
+}
+
+/* =====================
+   CASH — RIGHT (LOWER)
+===================== */
+
+.cash-area {
+    position: absolute;
+    right: 12px;
+    top: 72%;
+    width: 130px;
+    z-index: 2;
+}
+
+.note {
+    position: absolute;
+    width: 84px;
+    height: 40px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #2ecc71, #1e8449);
+    border: 2px solid #a9dfbf;
+    box-shadow:
+        inset 0 0 6px rgba(255,255,255,0.4),
+        0 10px 18px rgba(0,0,0,0.5),
+        0 0 14px rgba(46, 204, 113, 0.6);
+    animation: noteDrop 1.8s ease-out forwards;
+}
+
+.note span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+}
+
+.n1 { right: 0; }
+.n2 { right: 18px; animation-delay: 0.2s; }
+.n3 { right: 36px; animation-delay: 0.4s; }
+.n4 { right: 10px; animation-delay: 0.6s; }
+
+@keyframes noteDrop {
+    to { transform: translateY(190px); }
+}
+
+/* =====================
+   BRAND (LAYOUT FIX)
+===================== */
+
+.splash-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 3;
+    text-align: center;
+}
+
+/* TITLE */
+.app-title {
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 5px; /* ⬅ creates 2-line gap */
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.shine {
+    background: linear-gradient(120deg, #ffffff, #ffd36a, #ffffff);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    from { background-position: 200%; }
+    to { background-position: -200%; }
+}
+
+/* TAGLINE */
+.tagline {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 14px; /* ⬅ snug before By ATS */
+    animation: taglineFloat 7s ease-in-out infinite;
+    opacity: 0.9;
+}
+
+@keyframes taglineFloat {
+    0%, 100% { transform: translateY(0); opacity: 0.75; }
+    50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* =====================
+   BY ATS — CASH TAG
+===================== */
+
+.byline-box {
+    padding: 6px 18px;
+    background: linear-gradient(135deg, #2ecc71, #1e8449);
+    border: 2px solid #000;
+    border-radius: 6px;
+    transform: skewX(-12deg);
+    box-shadow:
+        0 0 10px rgba(46, 204, 113, 0.6),
+        inset 0 0 6px rgba(255,255,255,0.35);
+    animation: cashFloat 8s ease-in-out infinite;
+}
+
+.byline {
+    display: block;
+    transform: skewX(12deg);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #ecfdf3;
+    font-weight: 700;
+}
+
+@keyframes cashFloat {
+    0%, 100% {
+        transform: translateY(0) skewX(-12deg);
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
+    }
+    50% {
+        transform: translateY(-3px) skewX(-12deg);
+        box-shadow: 0 0 16px rgba(46, 204, 113, 0.85);
+    }
+}
+/* =====================
+   PREMIUM LIGHTNING FX
+===================== */
+
+/* LIGHTNING STREAK */
+
+.lightning-streak{
+    position:absolute;
+    width:2px;
+    height:140%;
+    top:-20%;
+    left:30%;
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255,220,120,0.9),
+        rgba(255,220,120,0.6),
+        transparent
+    );
+    filter:blur(1px);
+    opacity:0.35;
+    animation:lightningFlash 6s infinite;
+    z-index:1;
+}
+
+.lightning-streak.second{
+    left:70%;
+    animation-delay:3s;
+}
+
+/* FLASH ANIMATION */
+
+@keyframes lightningFlash{
+    0%,85%,100%{
+        opacity:0;
+        transform:scaleY(0.6);
+    }
+
+    90%{
+        opacity:0.5;
+        transform:scaleY(1);
+    }
+
+    92%{
+        opacity:0.25;
+    }
+
+    94%{
+        opacity:0.6;
+    }
+
+    96%{
+        opacity:0;
+    }
+}
+
+
+/* =====================
+   ELECTRIC WAVE
+===================== */
+
+.electric-wave{
+    position:absolute;
+    inset:-40%;
+    background:radial-gradient(
+        circle at center,
+        rgba(255,215,100,0.15),
+        rgba(255,215,100,0.08),
+        transparent 65%
+    );
+    filter:blur(60px);
+    animation:electricPulse 8s ease-in-out infinite;
+    z-index:1;
+}
+
+@keyframes electricPulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:0.35;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:0.6;
+    }
+
+}
+
+
+/* =====================
+   GOLD PARTICLES
+===================== */
+
+.gold-particles{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(rgba(255,215,120,0.7) 1px, transparent 1px),
+        radial-gradient(rgba(255,215,120,0.5) 1px, transparent 1px);
+    background-size:120px 120px, 160px 160px;
+    background-position:0 0, 40px 60px;
+    opacity:0.15;
+    animation:particleMove 20s linear infinite;
+    z-index:1;
+}
+
+@keyframes particleMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-80px);
+    }
+}
+/* DESKTOP BALANCE */
+
+.splash-content{
+    max-width:700px;
+    margin:auto;
+}
+
+@media (min-width:900px){
+
+    .app-title{
+        font-size:64px;
+    }
+
+    .tagline{
+        font-size:22px;
+    }
+
+}

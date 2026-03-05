@@ -1,0 +1,179 @@
+body{
+    margin:0;
+    font-family: "Segoe UI", Arial;
+    background:
+radial-gradient(circle at center, #1f2f7a 0%, #0b1435 40%, #020617 100%);
+background-size: 200% 200%;
+animation: bgShift 14s ease-in-out infinite;
+    color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* container */
+
+.container{
+    text-align:center;
+    width:100%;
+    max-width:420px;
+    margin-top:80px;
+}
+
+/* welcome text */
+
+#welcomeText{
+    font-size:38px;
+    transition: all 1s ease;
+    margin-top:-40px;
+}
+
+/* username editable */
+
+#username{
+    color:#ffd36a;
+
+    text-shadow:
+        0 0 6px rgba(255,211,106,0.4);
+
+    border-bottom:2px dashed rgba(255,255,255,0.35);
+
+    padding:2px 4px;
+
+    outline:none;
+}
+
+/* move to top */
+
+.moveUp{
+    position:absolute;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* income section */
+
+#incomeSection{
+    margin-top:70px;
+    animation:fadeIn 1s ease;
+    animation-delay:0.4s;
+    animation-fill-mode:forwards;
+}
+
+.hidden{
+    display:none;
+}
+
+.subtitle{
+
+    margin-bottom:40px;
+
+    font-size:20px;
+
+    color:rgba(255,255,255,0.75);
+
+    letter-spacing:0.4px;
+
+    animation:subtitleFloat 6s ease-in-out infinite;
+
+}
+
+@keyframes subtitleFloat{
+
+    0%,100%{
+        transform:translateY(0);
+        opacity:0.85;
+    }
+
+    50%{
+        transform:translateY(-4px);
+        opacity:1;
+    }
+
+}
+
+/* cards */
+
+/* cards */
+
+.cards{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+}
+
+.card{
+
+    width:260px;
+    padding:22px;
+
+    font-size:18px;
+
+    border-radius:14px;
+
+    background:linear-gradient(145deg,#1f2d70,#273681);
+
+    border:2px solid transparent;
+
+    cursor:pointer;
+
+    transition:all 0.25s ease;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.45);
+
+}
+
+.card:hover{
+
+    transform:scale(1.07);
+
+    border-color:#ffd36a;
+
+    box-shadow:
+        0 0 18px rgba(255,211,106,0.6),
+        0 12px 30px rgba(0,0,0,0.55);
+
+}
+
+.card:active{
+    transform:scale(0.96);
+}
+
+.card:hover{
+    transform:scale(1.07);
+    border-color:#ffd36a;
+
+    box-shadow:
+        0 0 18px rgba(255,211,106,0.6),
+        0 12px 30px rgba(0,0,0,0.55);
+}
+
+.card:active{
+    transform:scale(0.96);
+}
+
+/* fade animation */
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes bgShift {
+
+0%{
+background-position: 0% 50%;
+}
+
+50%{
+background-position: 100% 50%;
+}
+
+100%{
+background-position: 0% 50%;
+}
+
+}
