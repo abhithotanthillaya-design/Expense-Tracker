@@ -1,13 +1,21 @@
+/* elements */
+
+const welcomeText = document.getElementById("welcomeText")
+const incomeSection = document.getElementById("incomeSection")
+const username = document.getElementById("username")
+const cards = document.querySelectorAll(".card")
+
 /* load saved username when page opens */
 
 window.addEventListener("DOMContentLoaded", () => {
 
-    const username = document.getElementById("username")
     const savedName = localStorage.getItem("username")
 
     if (savedName) {
-        username.textContent = savedName
+        username.value = savedName
     }
+
+    resizeInput()
 
 })
 
@@ -23,22 +31,21 @@ window.addEventListener("load", () => {
 
 })
 
-/* elements */
+/* auto resize username input */
 
-const welcomeText = document.getElementById("welcomeText")
-const incomeSection = document.getElementById("incomeSection")
-const username = document.getElementById("username")
-const cards = document.querySelectorAll(".card")
-
-/* save username while typing */
+function resizeInput(){
+    username.style.width = username.value.length + "ch"
+}
 
 username.addEventListener("input", () => {
 
-    const name = username.textContent.trim()
+    const name = username.value.trim()
 
     if (name) {
         localStorage.setItem("username", name)
     }
+
+    resizeInput()
 
 })
 
@@ -58,7 +65,7 @@ cards.forEach(card => {
     card.addEventListener("click", () => {
 
         const type = card.dataset.type
-        const name = username.textContent.trim()
+        const name = username.value.trim()
 
         if (name) {
             localStorage.setItem("username", name)

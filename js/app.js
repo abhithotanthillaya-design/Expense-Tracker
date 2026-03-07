@@ -6,21 +6,69 @@ const balanceEl = document.getElementById("balanceTotal");
 
 const fab = document.getElementById("fab");
 const modal = document.getElementById("transactionModal");
+
+let type = "income";
+
+const incomeBtn = document.getElementById("incomeBtn");
+const expenseBtn = document.getElementById("expenseBtn");
+
 const saveBtn = document.getElementById("saveTransaction");
 
 const todayDate = document.getElementById("todayDate");
+const accountName = document.getElementById("accountName");
+
+
+/* toggle income / expense */
+
+incomeBtn.onclick = () => {
+    type = "income";
+    incomeBtn.classList.add("active");
+    expenseBtn.classList.remove("active");
+};
+
+expenseBtn.onclick = () => {
+    type = "expense";
+    expenseBtn.classList.add("active");
+    incomeBtn.classList.remove("active");
+};
+
+
+/* show today's date */
 
 todayDate.textContent = new Date().toDateString();
 
+
+/* show username + income type */
+
+const savedName = localStorage.getItem("username") || "User";
+const incomeType = localStorage.getItem("incomeType") || "Daily";
+
+accountName.textContent =
+`${savedName}'s ${incomeType.charAt(0).toUpperCase() + incomeType.slice(1)} Tracker`;
+
+
+/* open modal */
 
 fab.onclick = () => {
     modal.classList.remove("hidden");
 };
 
 
+/* close modal if background clicked */
+
+modal.addEventListener("click",(e)=>{
+
+    if(e.target === modal){
+        modal.classList.add("hidden");
+    }
+
+});
+
+
+/* save transaction */
+
 saveBtn.onclick = () => {
 
-    const type = document.getElementById("type").value;
     const amount = Number(document.getElementById("amount").value);
     const note = document.getElementById("note").value;
 
@@ -36,11 +84,20 @@ saveBtn.onclick = () => {
 
     addTransaction(transaction);
 
+    /* clear inputs */
+
+    document.getElementById("amount").value = "";
+    document.getElementById("note").value = "";
+
+    /* close modal */
+
     modal.classList.add("hidden");
 
     render();
 };
 
+
+/* render transactions */
 
 function render() {
 
@@ -58,11 +115,13 @@ function render() {
         item.className = "transaction";
 
         item.innerHTML = `
-        <span>${t.note || "Transaction"}</span>
-        <span class="${t.type}">
+        <span class="note">${t.note || "Transaction"}</span>
+
+        <span class="amount ${t.type}">
         ${t.type === "income" ? "+" : "-"} ₹${t.amount}
         </span>
-        <button class="delete-btn" data-id="${t.id}">🗑</button>
+
+        <button class="delete-btn" title="Delete transaction">🗑</button>
         `;
 
         list.appendChild(item);
@@ -72,13 +131,14 @@ function render() {
         } else {
             expense += t.amount;
         }
+
         const deleteBtn = item.querySelector(".delete-btn");
 
         deleteBtn.onclick = () => {
 
-        deleteTransaction(t.id);
+            deleteTransaction(t.id);
 
-        render();
+            render();
 
         };
 
@@ -90,3 +150,12 @@ function render() {
 }
 
 render();
+
+
+/* quick amount buttons */
+
+document.querySelectorAll(".quick-amounts button").forEach(btn=>{
+btn.onclick=()=>{
+document.getElementById("amount").value=btn.dataset.amount
+}
+});
