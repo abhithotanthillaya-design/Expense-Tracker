@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Tracker</title>
+
+<link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+
+<header class="header">
+<h2 id="accountName">Personal Account</h2>
+<p id="todayDate"></p>
+</header>
+
+<section class="summary">
+
+<div class="summary-card">
+<h3>Income</h3>
+<p id="incomeTotal">₹0</p>
+</div>
+
+<div class="summary-card">
+<h3>Expenses</h3>
+<p id="expenseTotal">₹0</p>
+</div>
+
+<div class="summary-card balance">
+<h3>Balance</h3>
+<p id="balanceTotal">₹0</p>
+</div>
+
+</section>
+
+<section class="timeline">
+
+<h3 class="timeline-title">Recent Activity</h3>
+
+<div id="transactionList"></div>
+
+</section>
+
+<button id="fab">+</button>
+
+<div id="transactionModal" class="modal hidden">
+
+<div class="modal-content">
+
+<h3>Add Transaction</h3>
+
+<select id="type">
+<option value="income">Income</option>
+<option value="expense">Expense</option>
+</select>
+
+<input type="number" id="amount" placeholder="Amount">
+
+<input type="text" id="note" placeholder="Note">
+
+<button id="saveTransaction">Save</button>
+
+</div>
+
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/app.js"></script>
+
+</body>
+</html>
