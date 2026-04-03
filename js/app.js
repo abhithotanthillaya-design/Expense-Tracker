@@ -33,9 +33,17 @@ expenseBtn.onclick = () => {
 };
 
 
-/* show today's date */
+const selectedDate = localStorage.getItem("selectedDate");
 
-todayDate.textContent = new Date().toDateString();
+const currentDate = selectedDate ? new Date(selectedDate) : new Date();
+
+todayDate.textContent = currentDate.toDateString();
+
+/* click to open calendar */
+
+todayDate.onclick = () => {
+    window.location.href = "calendar.html";
+};
 
 
 /* show username + income type */
@@ -101,7 +109,7 @@ saveBtn.onclick = () => {
 
 function render() {
 
-    const transactions = getTodayTransactions();
+    const transactions = getTransactions();
 
     list.innerHTML = "";
 

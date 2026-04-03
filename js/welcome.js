@@ -72,8 +72,7 @@ cards.forEach(card => {
         }
 
         localStorage.setItem("incomeType", type)
-
-        window.location.href = "app.html"
+        window.location.href = type + ".html"
 
     })
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Date</title>
+</head>
+
+<body style="font-family:sans-serif; text-align:center; padding:40px;">
+
+<h2>Select Date</h2>
+
+<input type="date" id="datePicker">
+
+<br><br>
+
+<button onclick="goBack()">View Data</button>
+
+<script>
+function goBack(){
+    const date = document.getElementById("datePicker").value;
+
+    if(date){
+        localStorage.setItem("selectedDate", date);
+        window.history.back();
+    }
+}
+</script>
+
+</body>
+</html>

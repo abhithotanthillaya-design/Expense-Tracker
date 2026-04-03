@@ -1,32 +1,46 @@
-function getTransactions() {
-    const data = localStorage.getItem("transactions");
-    return data ? JSON.parse(data) : [];
+function getSelectedDateKey() {
+
+    const selectedDate = localStorage.getItem("selectedDate");
+
+    const date = selectedDate ? new Date(selectedDate) : new Date();
+
+    return date.toISOString().split("T")[0]; // format: YYYY-MM-DD
 }
 
-function saveTransactions(transactions) {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+/* GET transactions for that date */
+
+function getTransactions() {
+
+    const key = "transactions_" + getSelectedDateKey();
+
+    return JSON.parse(localStorage.getItem(key)) || [];
 }
+
+
+/* ADD transaction */
 
 function addTransaction(transaction) {
+
+    const key = "transactions_" + getSelectedDateKey();
+
     const transactions = getTransactions();
+
     transactions.push(transaction);
-    saveTransactions(transactions);
+
+    localStorage.setItem(key, JSON.stringify(transactions));
 }
 
-function getTodayTransactions() {
 
-    const transactions = getTransactions();
+/* DELETE transaction */
 
-    const today = new Date().toISOString().split("T")[0];
-
-    return transactions.filter(t => t.date.startsWith(today));
-}
 function deleteTransaction(id) {
 
-const transactions = getTransactions();
+    const key = "transactions_" + getSelectedDateKey();
 
-const updated = transactions.filter(t => t.id !== id);
+    let transactions = getTransactions();
 
-saveTransactions(updated);
+    transactions = transactions.filter(t => t.id !== id);
 
+    localStorage.setItem(key, JSON.stringify(transactions));
 }
