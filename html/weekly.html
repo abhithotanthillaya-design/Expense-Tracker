@@ -39,6 +39,12 @@
 
 <h3 class="timeline-title">Recent Activity</h3>
 
+<div class="filters">
+    <button data-filter="all" class="active">All</button>
+    <button data-filter="income">Income</button>
+    <button data-filter="expense">Expense</button>
+</div>
+
 <div id="transactionList"></div>
 
 </section>
@@ -56,14 +62,18 @@
 <button id="expenseBtn">Expense</button>
 </div>
 
-<select id="category">
-<option value="">Select Category</option>
-<option value="wage">Wage</option>
-<option value="stocks">Stocks</option>
-<option value="food">Food</option>
-<option value="travel">Travel</option>
-<option value="shopping">Shopping</option>
-</select>
+<div class="category-row">
+    <span id="categoryIcon">💸</span>
+
+    <select id="category">
+        <option value="">Select Category</option>
+        <option value="wage">Wage</option>
+        <option value="stocks">Stocks</option>
+        <option value="food">Food</option>
+        <option value="travel">Travel</option>
+        <option value="shopping">Shopping</option>
+    </select>
+</div>
 
 <input id="amount" type="number" placeholder="Amount">
 
