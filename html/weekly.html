@@ -4,17 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Daily Tracker</title>
+<title>Weekly Tracker</title>
 
-<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="app.css">
 </head>
 
 <body>
 
 <header class="header">
+
+<div class="top-actions">
+
+<button id="menuBtn" class="glass-btn">
+â˜°
+</button>
+
+</div>
+
 <h2 id="accountName">Personal Account</h2>
 <p id="todayDate" class="clickable-date"></p>
 </header>
+<div id="menuPopup" class="home-menu hidden">
+
+<a href="welcome.html">ðŸ  Home</a>
+
+<a href="#">âš™ Settings</a>
+
+<a href="#">ðŸ“Š Analytics</a>
+
+</div>
 
 <section class="summary">
 
@@ -51,7 +69,7 @@
 
 <button id="fab">+</button>
 
-<div id="transactionModal" class="modal hidden">
+<div id="transactionModal" class="modal modal-hidden">
 
 <div class="modal-content">
 
@@ -72,8 +90,12 @@
         <option value="food">Food</option>
         <option value="travel">Travel</option>
         <option value="shopping">Shopping</option>
+        <option value="other">Other</option>
     </select>
 </div>
+<input id="customCategory"
+placeholder="Enter category"
+class="hidden">
 
 <input id="amount" type="number" placeholder="Amount">
 

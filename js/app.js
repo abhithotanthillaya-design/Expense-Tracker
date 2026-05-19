@@ -127,11 +127,15 @@ categorySelect.onchange = () => {
 
     if(value === "other"){
 
+        if(!customCategoryInput) return;
+
         customCategoryInput
         .classList.remove("hidden");
 
     }
     else{
+
+        if(!customCategoryInput) return;
 
         customCategoryInput
         .classList.add("hidden");
@@ -201,6 +205,7 @@ accountName.textContent =
 
 fab.onclick = () => {
     modal.classList.remove("hidden");
+    modal.classList.remove("modal-hidden");
 };
 
 
@@ -209,7 +214,7 @@ fab.onclick = () => {
 modal.addEventListener("click",(e)=>{
 
     if(e.target === modal){
-        modal.classList.add("hidden");
+        modal.classList.add("modal-hidden");
     }
 
 });
@@ -321,7 +326,7 @@ const transaction = {
 
     /* close modal */
 
-    modal.classList.add("hidden");
+    modal.classList.add("modal-hidden");
 
     render();
 };
@@ -494,6 +499,8 @@ document.querySelectorAll(".filters button").forEach(btn => {
     };
 
 });
+if(menuBtn && menuPopup){
+
 /* MENU TOGGLE */
 
 menuBtn.onclick = () => {
@@ -516,3 +523,5 @@ document.addEventListener("click",(e)=>{
     }
 
 });
+
+}
