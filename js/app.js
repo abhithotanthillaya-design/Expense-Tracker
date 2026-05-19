@@ -88,11 +88,11 @@ const saveBtn = document.getElementById("saveTransaction");
 
 const todayDate = document.getElementById("todayDate");
 const accountName = document.getElementById("accountName");
-const homeBtn =
-document.getElementById("homeBtn");
+const menuBtn =
+document.getElementById("menuBtn");
 
-const homeMenu =
-document.getElementById("homeMenu");
+const menuPopup =
+document.getElementById("menuPopup");
 
 const iconMap = {
     food: "🍔",
@@ -494,11 +494,11 @@ document.querySelectorAll(".filters button").forEach(btn => {
     };
 
 });
-/* HOME MENU TOGGLE */
+/* MENU TOGGLE */
 
-homeBtn.onclick = () => {
+menuBtn.onclick = () => {
 
-    homeMenu.classList.toggle("hidden");
+    menuPopup.classList.toggle("hidden");
 
 };
 
@@ -507,11 +507,11 @@ homeBtn.onclick = () => {
 document.addEventListener("click",(e)=>{
 
     if(
-        !homeMenu.contains(e.target) &&
-        e.target !== homeBtn
+        !menuPopup.contains(e.target) &&
+        e.target !== menuBtn
     ){
 
-        homeMenu.classList.add("hidden");
+        menuPopup.classList.add("hidden");
 
     }
 
