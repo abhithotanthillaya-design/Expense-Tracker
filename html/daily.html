@@ -12,9 +12,35 @@
 <body>
 
 <header class="header">
+
+<div class="top-actions">
+
+<button id="homeBtn" class="glass-btn">
+🏠
+</button>
+
+<button id="settingsBtn" class="glass-btn">
+⚙
+</button>
+
+</div>
+
 <h2 id="accountName">Personal Account</h2>
+
 <p id="todayDate" class="clickable-date"></p>
+
 </header>
+<div id="homeMenu" class="home-menu hidden">
+
+<a href="daily.html">📅 Daily</a>
+
+<a href="weekly.html">📈 Weekly</a>
+
+<a href="monthly.html">🗓 Monthly</a>
+
+<a href="yearly.html">💰 Yearly</a>
+
+</div>
 
 <section class="summary">
 
@@ -72,8 +98,12 @@
         <option value="food">Food</option>
         <option value="travel">Travel</option>
         <option value="shopping">Shopping</option>
+        <option value="other">Other</option>
     </select>
 </div>
+<input id="customCategory"
+placeholder="Enter category"
+class="hidden">
 
 <input id="amount" type="number" placeholder="Amount">
 
@@ -89,7 +119,29 @@
 
 </div>
 </div>
+<nav class="bottom-nav">
 
+<a href="daily.html" class="nav-item active">
+<span>📅</span>
+<p>Daily</p>
+</a>
+
+<a href="weekly.html" class="nav-item">
+<span>📈</span>
+<p>Weekly</p>
+</a>
+
+<a href="monthly.html" class="nav-item">
+<span>🗓</span>
+<p>Monthly</p>
+</a>
+
+<a href="yearly.html" class="nav-item">
+<span>💰</span>
+<p>Yearly</p>
+</a>
+
+</nav>
 <script src="../js/storage.js"></script>
 <script src="../js/app.js"></script>
 

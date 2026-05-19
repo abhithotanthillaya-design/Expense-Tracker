@@ -1,3 +1,37 @@
+/* CUSTOM CATEGORY STORAGE */
+
+function getCustomCategories(){
+
+    return JSON.parse(
+        localStorage.getItem("customCategories")
+    ) || [];
+
+}
+
+function saveCustomCategory(name, icon){
+
+    const categories = getCustomCategories();
+
+    const alreadyExists =
+    categories.find(c =>
+        c.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if(!alreadyExists){
+
+        categories.push({
+            name,
+            icon
+        });
+
+        localStorage.setItem(
+            "customCategories",
+            JSON.stringify(categories)
+        );
+
+    }
+
+}
 let currentFilter = "all";
 const list = document.getElementById("transactionList");
 
@@ -12,13 +46,53 @@ let type = "income";
 
 const incomeBtn = document.getElementById("incomeBtn");
 const expenseBtn = document.getElementById("expenseBtn");
+const categorySelect =
+document.getElementById("category");
+/* LOAD SAVED CUSTOM CATEGORIES */
+
+const savedCategories =
+getCustomCategories();
+
+savedCategories.forEach(cat => {
+
+    const option =
+    document.createElement("option");
+
+    option.value = cat.name;
+
+    /* remove emoji from dropdown */
+
+    option.textContent = cat.name;
+
+    /* keep OTHER at bottom */
+
+    const otherOption =
+    categorySelect.querySelector(
+        'option[value="other"]'
+    );
+
+    categorySelect.insertBefore(
+        option,
+        otherOption
+    );
+
+});
+
+const categoryIcon =
+document.getElementById("categoryIcon");
+
+const customCategoryInput =
+document.getElementById("customCategory");
 
 const saveBtn = document.getElementById("saveTransaction");
 
 const todayDate = document.getElementById("todayDate");
 const accountName = document.getElementById("accountName");
-const categorySelect = document.getElementById("category");
-const categoryIcon = document.getElementById("categoryIcon");
+const homeBtn =
+document.getElementById("homeBtn");
+
+const homeMenu =
+document.getElementById("homeMenu");
 
 const iconMap = {
     food: "🍔",
@@ -27,10 +101,45 @@ const iconMap = {
     wage: "💼",
     shopping: "🛍"
 };
-
 categorySelect.onchange = () => {
+
     const value = categorySelect.value;
-    categoryIcon.textContent = iconMap[value] || "💸";
+
+    /* check custom categories */
+
+    const savedCustom =
+    getCustomCategories().find(
+        c => c.name === value
+    );
+
+    if(savedCustom){
+
+        categoryIcon.textContent =
+        savedCustom.icon;
+
+    }
+    else{
+
+        categoryIcon.textContent =
+        iconMap[value] || "💸";
+
+    }
+
+    if(value === "other"){
+
+        customCategoryInput
+        .classList.remove("hidden");
+
+    }
+    else{
+
+        customCategoryInput
+        .classList.add("hidden");
+
+        customCategoryInput.value = "";
+
+    }
+
 };
 
 /* toggle income / expense */
@@ -115,7 +224,83 @@ saveBtn.onclick = () => {
 
     if (!amount) return;
 
-    const category = document.getElementById("category").value;
+    let category = categorySelect.value;
+
+if(category === "other"){
+
+    category =
+    customCategoryInput.value.trim() || "Other";
+
+    /* SMART CAPITALIZATION */
+
+    category =
+    category.charAt(0).toUpperCase() +
+    category.slice(1).toLowerCase();
+
+    /* prevent duplicates */
+
+    const alreadyExists =
+    [...categorySelect.options].find(
+        option =>
+        option.value.toLowerCase() ===
+        category.toLowerCase()
+    );
+
+    /* detect smart icon */
+
+    let customIcon = "💸";
+
+    const text = category.toLowerCase();
+
+    if(text.includes("gym")){
+        customIcon = "🏋️";
+    }
+    else if(text.includes("medicine")){
+        customIcon = "💊";
+    }
+    else if(text.includes("petrol") ||
+            text.includes("fuel")){
+        customIcon = "⛽";
+    }
+    else if(text.includes("movie")){
+        customIcon = "🎬";
+    }
+    else if(text.includes("book")){
+        customIcon = "📚";
+    }
+    else if(text.includes("coffee")){
+        customIcon = "☕";
+    }
+
+    saveCustomCategory(category, customIcon);
+
+    /* ADD TO DROPDOWN */
+
+    if(!alreadyExists){
+
+        const option =
+        document.createElement("option");
+
+        option.value = category;
+
+        /* no emoji in dropdown */
+
+        option.textContent = category;
+
+        /* keep OTHER at bottom */
+
+        const otherOption =
+        categorySelect.querySelector(
+            'option[value="other"]'
+        );
+
+        categorySelect.insertBefore(
+            option,
+            otherOption
+        );
+
+    }
+}
 
 const transaction = {
     id: crypto.randomUUID(),
@@ -190,7 +375,42 @@ function render() {
             shopping: "🛍"
         };
 
-        const icon = icons[t.category] || "💸";
+        let icon = icons[t.category];
+
+/* smart custom icons */
+
+const text =
+(t.note || t.category || "").toLowerCase();
+
+if(!icon){
+
+    if(text.includes("gym")){
+        icon = "🏋️";
+    }
+    else if(text.includes("medicine")){
+        icon = "💊";
+    }
+    else if(text.includes("petrol") ||
+            text.includes("fuel")){
+        icon = "⛽";
+    }
+    else if(text.includes("movie")){
+        icon = "🎬";
+    }
+    else if(text.includes("book")){
+        icon = "📚";
+    }
+    else if(text.includes("coffee")){
+        icon = "☕";
+    }
+    else if(text.includes("shopping")){
+        icon = "🛍";
+    }
+    else{
+        icon = "💸";
+    }
+
+}
 
         item.innerHTML = `
         <span class="note">
@@ -272,5 +492,27 @@ document.querySelectorAll(".filters button").forEach(btn => {
 
         render();
     };
+
+});
+/* HOME MENU TOGGLE */
+
+homeBtn.onclick = () => {
+
+    homeMenu.classList.toggle("hidden");
+
+};
+
+/* close when clicking outside */
+
+document.addEventListener("click",(e)=>{
+
+    if(
+        !homeMenu.contains(e.target) &&
+        e.target !== homeBtn
+    ){
+
+        homeMenu.classList.add("hidden");
+
+    }
 
 });
