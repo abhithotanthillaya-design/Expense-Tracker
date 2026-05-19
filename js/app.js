@@ -130,7 +130,7 @@ categorySelect.onchange = () => {
         if(!customCategoryInput) return;
 
         customCategoryInput
-        .classList.remove("hidden");
+        .classList.add("show");
 
     }
     else{
@@ -138,7 +138,7 @@ categorySelect.onchange = () => {
         if(!customCategoryInput) return;
 
         customCategoryInput
-        .classList.add("hidden");
+        .classList.remove("show");
 
         customCategoryInput.value = "";
 
@@ -324,6 +324,9 @@ const transaction = {
     document.getElementById("note").value = "";
     document.getElementById("category").value = "";
 
+    customCategoryInput.value = "";
+    customCategoryInput.classList.remove("show");
+
     /* close modal */
 
     modal.classList.add("modal-hidden");
@@ -505,7 +508,7 @@ if(menuBtn && menuPopup){
 
 menuBtn.onclick = () => {
 
-    menuPopup.classList.toggle("hidden");
+    menuPopup.classList.toggle("show");
 
 };
 
@@ -518,7 +521,7 @@ document.addEventListener("click",(e)=>{
         e.target !== menuBtn
     ){
 
-        menuPopup.classList.add("hidden");
+        menuPopup.classList.remove("show");
 
     }
 
