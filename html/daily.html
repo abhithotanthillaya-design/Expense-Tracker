@@ -3,12 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Daily Tracker</title>
-
+<title>Daily Tracker — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
 
 <link rel="stylesheet" href="../css/app.css">
-
+<link rel="stylesheet" href="../css/components.css">
+<style>
+.date-nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+.day-nav-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.day-nav-arrow:hover {
+    background: rgba(255, 211, 106, 0.2);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+</style>
 </head>
 
 <body>
@@ -16,32 +43,37 @@
 <header class="header">
 
 <div class="top-actions">
-
-<button id="menuBtn" class="glass-btn">
+<button id="menuBtn" class="glass-btn" title="Open Menu">
 ☰
 </button>
-
 </div>
 
 <h2 id="accountName">Personal Account</h2>
 
-<p id="todayDate" class="clickable-date"></p>
+<div class="date-nav-wrapper">
+    <button id="prevDayBtn" class="day-nav-arrow" title="Previous Day">‹</button>
+    <p id="todayDate" class="clickable-date"></p>
+    <button id="nextDayBtn" class="day-nav-arrow" title="Next Day">›</button>
+</div>
 
 </header>
+
 <div id="menuPopup" class="home-menu hidden">
-
-<a href="welcome.html">🏠 Home</a>
-
+<!-- Populated and managed by nav.js -->
+<a href="dashboard.html">🏠 Dashboard</a>
+<a href="transactions.html">💳 Transactions</a>
+<a href="daily.html" class="active">📅 Daily</a>
 <a href="weekly.html">📆 Weekly</a>
-
 <a href="monthly.html">🗓 Monthly</a>
-
 <a href="yearly.html">📊 Yearly</a>
-
-<a href="#">⚙ Settings</a>
-
-<a href="#">📊 Analytics</a>
-
+<a href="analytics.html">📈 Analytics</a>
+<a href="budgets.html">🎯 Budgets</a>
+<a href="recurring.html">🔄 Recurring</a>
+<a href="accounts.html">🏦 Accounts</a>
+<a href="settings.html">⚙ Settings</a>
+<div class="menu-byline">
+    <span>BY ATS</span>
+</div>
 </div>
 
 <section class="summary">
@@ -65,7 +97,9 @@
 
 <section class="timeline">
 
-<h3 class="timeline-title">Recent Activity</h3>
+<div class="timeline-title">
+    <span>Daily Activity</span>
+</div>
 
 <div class="filters">
     <button data-filter="all" class="active">All</button>
@@ -77,13 +111,14 @@
 
 </section>
 
-<button id="fab">+</button>
+<button id="fab" title="Add Transaction">+</button>
 
+<!-- TRANSACTION MODAL -->
 <div id="transactionModal" class="modal modal-hidden">
 
 <div class="modal-content">
 
-<h2>Add Transaction</h2>
+<h2 id="modalTitle">Add Transaction</h2>
 
 <div class="type-toggle">
 <button id="incomeBtn" class="active">Income</button>
@@ -98,31 +133,50 @@
         <option value="wage">Wage</option>
         <option value="stocks">Stocks</option>
         <option value="food">Food</option>
-        <option value="travel">Travel</option>
+        <option value="transport">Transport</option>
         <option value="shopping">Shopping</option>
+        <option value="bills">Bills & Utilities</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="health">Health</option>
+        <option value="education">Education</option>
+        <option value="travel">Travel</option>
+        <option value="subscriptions">Subscriptions</option>
         <option value="other">Other</option>
     </select>
 </div>
-<input id="customCategory"
-placeholder="Enter category">
 
-<input id="amount" type="number" placeholder="Amount">
+<input id="customCategory" placeholder="Enter custom category name">
+
+<div style="display: flex; gap: 10px;">
+    <select id="accountSelect" style="flex: 1;" title="Select Account">
+        <option value="Cash">💵 Cash</option>
+        <option value="Bank Account">🏦 Bank Account</option>
+        <option value="UPI / Wallet">⚡ UPI / Wallet</option>
+        <option value="Savings">💰 Savings</option>
+    </select>
+</div>
+
+<input id="amount" type="number" step="any" placeholder="Amount (e.g. 500)">
 
 <div class="quick-amounts">
 <button data-amount="100">₹100</button>
 <button data-amount="500">₹500</button>
 <button data-amount="1000">₹1000</button>
+<button data-amount="5000">₹5000</button>
 </div>
 
-<input id="note" placeholder="Note (optional)">
+<input id="note" placeholder="Note or description (optional)">
 
-<button id="saveTransaction">Save</button>
+<button id="saveTransaction">Save Entry</button>
 
 </div>
 </div>
 
 <script src="../js/storage.js"></script>
 <script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
 <script src="../js/transaction-view.js"></script>
 <script src="../js/app.js"></script>
 

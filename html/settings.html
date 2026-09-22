@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Settings & Preferences</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Customize display, manage currencies, and backup data</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- PREFERENCES SECTION -->
+    <div class="settings-section">
+        <div class="settings-section-title">
+            <span>👤</span> Profile & Currency Preferences
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Display Name</h4>
+                <p>Personalized greeting on headers and reports</p>
+            </div>
+            <div class="settings-control">
+                <input type="text" id="settingUsername" placeholder="Your Name">
+            </div>
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Default Currency</h4>
+                <p>Currency symbol used throughout all financial views</p>
+            </div>
+            <div class="settings-control">
+                <select id="settingCurrency">
+                    <option value="INR|₹">₹ Indian Rupee (INR)</option>
+                    <option value="USD|$">$ US Dollar (USD)</option>
+                    <option value="EUR|€">€ Euro (EUR)</option>
+                    <option value="GBP|£">£ British Pound (GBP)</option>
+                    <option value="AED|AED">AED UAE Dirham</option>
+                    <option value="CAD|C$">C$ Canadian Dollar</option>
+                    <option value="AUD|A$">A$ Australian Dollar</option>
+                    <option value="JPY|¥">¥ Japanese Yen</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Primary Interval</h4>
+                <p>Preferred tracking interval preference</p>
+            </div>
+            <div class="settings-control">
+                <select id="settingInterval">
+                    <option value="daily">Daily Tracker</option>
+                    <option value="weekly">Weekly Tracker</option>
+                    <option value="monthly" selected>Monthly Tracker</option>
+                    <option value="yearly">Yearly Tracker</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align: right; margin-top: 14px;">
+            <button id="savePreferencesBtn" class="modal-submit-btn" style="width: auto; padding: 9px 24px;">Save Preferences</button>
+        </div>
+    </div>
+
+    <!-- DATA MANAGEMENT SECTION -->
+    <div class="settings-section">
+        <div class="settings-section-title">
+            <span>💾</span> Data Backup & Portability
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Export Full Backup (JSON)</h4>
+                <p>Download all transactions, accounts, budgets, and settings as a JSON file</p>
+            </div>
+            <div>
+                <button id="exportJsonBtn" class="btn-secondary">Export JSON 📥</button>
+            </div>
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Export Ledger (CSV)</h4>
+                <p>Export all historical transactions for spreadsheet applications (Excel / Sheets)</p>
+            </div>
+            <div>
+                <button id="exportCsvSettingsBtn" class="btn-secondary">Export CSV 📊</button>
+            </div>
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Restore Data from Backup</h4>
+                <p>Restore previous transactions and configuration from a JSON backup file</p>
+            </div>
+            <div>
+                <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                <button id="importJsonBtn" class="btn-secondary">Import JSON 📤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DANGER ZONE -->
+    <div class="settings-section" style="border-color: rgba(239, 68, 68, 0.3);">
+        <div class="settings-section-title" style="color: var(--expense);">
+            <span>⚠️</span> Danger Zone
+        </div>
+
+        <div class="settings-row">
+            <div class="settings-label">
+                <h4>Reset All Application Data</h4>
+                <p>Permanently remove all transactions, budgets, custom categories, and restore defaults</p>
+            </div>
+            <div>
+                <button id="resetAllDataBtn" class="btn-danger-outline">Reset All Data 🗑️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="glass-panel" style="text-align: center; padding: 28px 20px;">
+        <div style="font-size: 36px; margin-bottom: 8px;">⚡</div>
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; background: linear-gradient(120deg, #fff, #ffd36a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Expense Tracker</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin: 4px 0 14px;">Track. Save. Grow.</p>
+        <div style="display: inline-block; padding: 4px 14px; background: linear-gradient(135deg, #2ecc71, #1e8449); border-radius: 6px; transform: skewX(-10deg); font-weight: 700; font-size: 12px; letter-spacing: 1px;">
+            BY ATS
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 16px;">
+            Version 2.0.0 &bull; Offline-First &bull; Firebase-Ready Architecture
+        </p>
+    </div>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

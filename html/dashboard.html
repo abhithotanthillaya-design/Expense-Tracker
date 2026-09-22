@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2 id="dashboardGreeting">Financial Overview</h2>
+    <p id="dashboardDate" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;"></p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Populated by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- HERO BALANCE WIDGET -->
+    <div class="dashboard-hero">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="hero-label">Net Total Balance</span>
+            <span id="savingsRateBadge" class="badge-frequency" style="background: var(--income-bg); color: var(--income);">Savings Rate: 0%</span>
+        </div>
+
+        <div class="hero-balance">
+            <span id="heroBalanceTotal">₹0</span>
+        </div>
+
+        <div class="hero-stats-row">
+            <div class="hero-stat-item">
+                <span class="hero-stat-label">📈 Total Income</span>
+                <span class="hero-stat-value income" id="heroIncomeTotal">₹0</span>
+            </div>
+            <div class="hero-stat-item">
+                <span class="hero-stat-label">📉 Total Expenses</span>
+                <span class="hero-stat-value expense" id="heroExpenseTotal">₹0</span>
+            </div>
+            <div class="hero-stat-item">
+                <span class="hero-stat-label">🎯 Monthly Budget</span>
+                <span class="hero-stat-value savings" id="heroBudgetStatus">₹0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK ACTIONS BAR -->
+    <div class="quick-actions-bar">
+        <button class="action-pill-btn btn-expense" id="quickAddExpenseBtn">
+            <span class="action-icon">💸</span>
+            <span>+ Expense</span>
+        </button>
+        <button class="action-pill-btn btn-income" id="quickAddIncomeBtn">
+            <span class="action-icon">💰</span>
+            <span>+ Income</span>
+        </button>
+        <a href="budgets.html" class="action-pill-btn btn-budget">
+            <span class="action-icon">🎯</span>
+            <span>Budgets</span>
+        </a>
+        <a href="analytics.html" class="action-pill-btn btn-analytics">
+            <span class="action-icon">📈</span>
+            <span>Analytics</span>
+        </a>
+    </div>
+
+    <!-- SMART DATA-DRIVEN INSIGHTS -->
+    <div class="insights-banner" id="insightsBanner">
+        <div class="insights-icon" id="insightIcon">💡</div>
+        <div class="insights-content">
+            <div class="insights-title" id="insightTitle">Financial Insight</div>
+            <div class="insights-text" id="insightText">
+                Add transactions to see personalized insights on your spending habits and savings trends.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2-COLUMN SECTION: BUDGET STATUS & ACCOUNTS OVERVIEW -->
+    <div class="grid-2">
+        <!-- Budget Progress Card -->
+        <div class="glass-panel">
+            <div class="panel-header">
+                <span class="panel-title">Monthly Budget Progress</span>
+                <a href="budgets.html" class="panel-link">Manage →</a>
+            </div>
+            <div id="dashboardBudgetBlock">
+                <div class="budget-header">
+                    <span style="font-size: 14px; font-weight: 600;">Overall Spending</span>
+                    <span class="budget-amounts" id="dashBudgetNumbers"><strong>₹0</strong> / ₹0</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill safe" id="dashBudgetBar" style="width: 0%;"></div>
+                </div>
+                <div class="budget-footer">
+                    <span id="dashBudgetRemaining">₹0 remaining</span>
+                    <span id="dashBudgetPercent">0% used</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Balances Snapshot -->
+        <div class="glass-panel">
+            <div class="panel-header">
+                <span class="panel-title">Accounts Snapshot</span>
+                <a href="accounts.html" class="panel-link">All Accounts →</a>
+            </div>
+            <div id="dashAccountsList" style="display: flex; flex-direction: column; gap: 8px;">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT TRANSACTIONS -->
+    <div class="glass-panel" style="margin-top: 20px;">
+        <div class="panel-header">
+            <span class="panel-title">Recent Transactions</span>
+            <a href="transactions.html" class="panel-link">View All History →</a>
+        </div>
+        <div id="dashRecentList">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+</main>
+
+<button id="fab" title="Quick Add">+</button>
+
+<!-- TRANSACTION MODAL -->
+<div id="transactionModal" class="modal modal-hidden">
+<div class="modal-content">
+    <h2 id="modalTitle">Record Transaction</h2>
+
+    <div class="type-toggle">
+        <button id="incomeBtn" class="active">Income</button>
+        <button id="expenseBtn">Expense</button>
+    </div>
+
+    <div class="category-row">
+        <span id="categoryIcon">💸</span>
+        <select id="category">
+            <option value="">Select Category</option>
+            <option value="wage">Wage</option>
+            <option value="stocks">Stocks / Investment</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="shopping">Shopping</option>
+            <option value="bills">Bills & Utilities</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="health">Health & Medical</option>
+            <option value="education">Education</option>
+            <option value="travel">Travel</option>
+            <option value="subscriptions">Subscriptions</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+
+    <input id="customCategory" placeholder="Enter custom category name">
+
+    <select id="accountSelect" title="Account">
+        <!-- Populated from accounts -->
+    </select>
+
+    <input id="amount" type="number" step="any" placeholder="Amount (e.g. 500)">
+
+    <div class="quick-amounts">
+        <button data-amount="100">₹100</button>
+        <button data-amount="500">₹500</button>
+        <button data-amount="1000">₹1000</button>
+        <button data-amount="5000">₹5000</button>
+    </div>
+
+    <input id="note" placeholder="Note or description (optional)">
+
+    <button id="saveTransaction">Save Entry</button>
+</div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

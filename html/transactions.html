@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction History — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Transaction History</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Search, filter, edit, and audit your records</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- SEARCH & MULTI-FILTER BAR -->
+    <div class="search-filter-box">
+        <div class="search-input-wrapper">
+            <span class="search-icon-fixed">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search by note, category, or account...">
+        </div>
+
+        <div class="filter-row">
+            <select id="typeFilter" class="filter-select">
+                <option value="all">All Types</option>
+                <option value="expense">Expense Only</option>
+                <option value="income">Income Only</option>
+            </select>
+
+            <select id="categoryFilter" class="filter-select">
+                <option value="all">All Categories</option>
+            </select>
+
+            <select id="accountFilter" class="filter-select">
+                <option value="all">All Accounts</option>
+            </select>
+
+            <select id="periodFilter" class="filter-select">
+                <option value="all" selected>All Time</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+            </select>
+
+            <select id="sortFilter" class="filter-select">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="amount-desc">Highest Amount</option>
+                <option value="amount-asc">Lowest Amount</option>
+            </select>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.06);">
+            <span id="filteredStats">Loading...</span>
+            <button id="exportCsvBtn" class="btn-secondary" style="padding: 4px 10px; font-size: 11px;">Export CSV 📄</button>
+        </div>
+    </div>
+
+    <!-- TRANSACTIONS CONTAINER -->
+    <div id="transactionsFullList">
+        <!-- Populated by transactions.js -->
+    </div>
+
+</main>
+
+<!-- EDIT TRANSACTION MODAL -->
+<div id="editModal" class="modal modal-hidden">
+<div class="modal-content">
+    <h2>Edit Transaction</h2>
+    <input type="hidden" id="editTxId">
+
+    <div class="type-toggle">
+        <button id="editIncomeBtn">Income</button>
+        <button id="editExpenseBtn">Expense</button>
+    </div>
+
+    <div class="category-row">
+        <span id="editCategoryIcon">💸</span>
+        <select id="editCategory">
+            <!-- Populated from categories -->
+        </select>
+    </div>
+
+    <select id="editAccount">
+        <!-- Populated from accounts -->
+    </select>
+
+    <input id="editAmount" type="number" step="any" placeholder="Amount">
+
+    <input id="editNote" placeholder="Note / Description">
+
+    <input id="editDate" type="date">
+
+    <div style="display: flex; gap: 10px; margin-top: 6px;">
+        <button id="cancelEditBtn" class="btn-secondary" style="flex: 1;">Cancel</button>
+        <button id="saveEditBtn" class="modal-submit-btn" style="flex: 1; margin: 0;">Save Changes</button>
+    </div>
+</div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/transactions.js"></script>
+</body>
+</html>

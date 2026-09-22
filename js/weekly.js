@@ -23,15 +23,24 @@ for (let offset = 0; offset < 7; offset += 1) {
 
     dayRows.push(`
         <a class="period-row period-link" href="daily.html" data-date="${dateKey(day)}">
-            <span>${formatDate(day, { weekday: "long" })}<small>${formatDate(day, { day: "numeric", month: "short" })}</small></span>
-            <span>+ ${formatCurrency(summary.income)} &nbsp; - ${formatCurrency(summary.expense)}</span>
+            <div>
+                <span style="font-weight: 600;">${formatDate(day, { weekday: "long" })}</span>
+                <small style="opacity: 0.65;">${formatDate(day, { day: "numeric", month: "short" })}</small>
+            </div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 14px;">
+                <span style="color: var(--income); font-weight: 600;">+ ${formatCurrency(summary.income)}</span>
+                <span style="opacity: 0.4; margin: 0 4px;">&bull;</span>
+                <span style="color: var(--expense); font-weight: 600;">- ${formatCurrency(summary.expense)}</span>
+            </div>
         </a>
     `);
 }
 renderPeriodRows(document.getElementById("breakdownList"), dayRows, "No days in this period");
 
 document.querySelectorAll("[data-date]").forEach(link => {
-    link.onclick = () => localStorage.setItem("selectedDate", link.dataset.date);
+    link.addEventListener("click", () => {
+        localStorage.setItem("selectedDate", link.dataset.date);
+    });
 });
 
 document.getElementById("previousPeriod").onclick = () => {

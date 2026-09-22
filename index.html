@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Expense Tracker</title>
+    <title>Expense Tracker — Track. Save. Grow. By ATS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#162a6a">
+    <meta name="description" content="Modern Personal Expense Tracker with Lightning-Fast Analytics, Budgets, and Insights. By ATS.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon.png">
 
     <!-- INTRO CSS -->
     <link rel="stylesheet" href="css/intro.css">
@@ -11,13 +15,15 @@
 <body>
 
 <!-- INTRO / SPLASH SCREEN -->
-<div id="splash-screen" class="splash">
+<div id="splash-screen" class="splash" title="Tap to continue">
 
     <!-- YELLOW LIGHTNING GLOW -->
     <div class="lightning-glow"></div>
     <!-- LIGHTNING EFFECT LAYERS -->
     <div class="electric-wave"></div>
     <div class="gold-particles"></div>
+    <div class="lightning-streak"></div>
+    <div class="lightning-streak second"></div>
 
     <!-- COINS : LEFT -->
     <div class="coins-area">
@@ -43,7 +49,7 @@
             <span class="shine">Expense Tracker</span>
         </h1>
 
-        <!-- TAGLINE (AFTER 2-LINE GAP VIA CSS) -->
+        <!-- TAGLINE -->
         <p class="tagline">Track. Save. Grow.</p>
 
         <!-- BY ATS CASH TAG -->
@@ -51,11 +57,13 @@
             <span class="byline">By ATS</span>
         </div>
 
+        <p class="skip-hint" style="margin-top: 30px; font-size: 13px; opacity: 0.6; letter-spacing: 0.5px;">Tap anywhere to continue</p>
+
     </div>
 
 </div>
 
-<!-- INTRO JS (ONLY FOR CLEAN ANIMATION RESTART) -->
+<!-- INTRO JS -->
 <script src="js/intro.js"></script>
 
 </body>

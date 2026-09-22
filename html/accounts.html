@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accounts & Wallets — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Financial Accounts</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Track balances across Cash, Bank, UPI, and Savings</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- TOP HEADER -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+        <div>
+            <span style="font-size: 13px; color: var(--text-muted);">Total Combined Balance</span>
+            <div id="accountsTotalBalance" style="font-size: 26px; font-weight: 800; font-family: 'Outfit', sans-serif; color: var(--gold);">₹0</div>
+        </div>
+        <button id="addAccountBtn" class="desktop-add-btn">+ Add New Account</button>
+    </div>
+
+    <!-- ACCOUNTS GRID -->
+    <div class="accounts-grid" id="accountsListGrid">
+        <!-- Populated by accounts.js -->
+    </div>
+
+    <!-- SELECTED ACCOUNT TRANSACTIONS -->
+    <div class="glass-panel" id="accountStatementPanel" style="display: none; margin-top: 24px;">
+        <div class="panel-header">
+            <span class="panel-title" id="statementTitle">Account Activity</span>
+            <button class="btn-secondary" style="font-size: 12px; padding: 4px 10px;" onclick="closeStatement()">Close ✕</button>
+        </div>
+        <div id="statementList">
+            <!-- Populated by accounts.js -->
+        </div>
+    </div>
+
+</main>
+
+<!-- ADD / EDIT ACCOUNT MODAL -->
+<div id="accountModal" class="modal modal-hidden">
+<div class="modal-content">
+    <h2 id="accountModalTitle">Add Account</h2>
+    <input type="hidden" id="editAccountId">
+
+    <div class="setup-field">
+        <label>Account Name</label>
+        <input id="accNameInput" placeholder="e.g. HDFC Bank, PayTM, Secret Cash">
+    </div>
+
+    <div class="setup-field">
+        <label>Account Type & Icon</label>
+        <select id="accTypeSelect">
+            <option value="bank|🏦">🏦 Bank Account</option>
+            <option value="cash|💵">💵 Cash in Hand</option>
+            <option value="wallet|⚡">⚡ UPI / Digital Wallet</option>
+            <option value="savings|💰">💰 Savings & Investment</option>
+            <option value="card|💳">💳 Credit Card</option>
+        </select>
+    </div>
+
+    <div class="setup-field">
+        <label>Initial Balance</label>
+        <input id="accInitialBalanceInput" type="number" step="any" placeholder="0" value="0">
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button id="cancelAccBtn" class="btn-secondary" style="flex: 1;">Cancel</button>
+        <button id="saveAccBtn" class="modal-submit-btn" style="flex: 1; margin: 0;">Save Account</button>
+    </div>
+</div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/accounts.js"></script>
+</body>
+</html>

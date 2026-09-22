@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics & Insights — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Financial Analytics</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Interactive visualizations and data-driven insights</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- PERIOD SELECTOR -->
+    <div class="filters" style="justify-content: center; margin-bottom: 20px;">
+        <button class="active" data-period="monthly">Monthly Overview</button>
+        <button data-period="weekly">Weekly (4 Weeks)</button>
+        <button data-period="daily">Daily (Last 7 Days)</button>
+        <button data-period="yearly">Yearly Comparison</button>
+    </div>
+
+    <!-- PERIOD SUMMARY STATS ROW -->
+    <div class="summary" style="margin-bottom: 24px; padding: 0;">
+        <div class="summary-card">
+            <h3>Period Inflow</h3>
+            <p id="analyticsIncome">₹0</p>
+        </div>
+        <div class="summary-card">
+            <h3>Period Outflow</h3>
+            <p id="analyticsExpense">₹0</p>
+        </div>
+        <div class="summary-card balance">
+            <h3>Net Savings</h3>
+            <p id="analyticsNetSavings">₹0</p>
+        </div>
+    </div>
+
+    <!-- SMART INSIGHTS GRID -->
+    <div style="margin-bottom: 24px;">
+        <h3 style="font-size: 17px; font-weight: 700; font-family: 'Outfit', sans-serif; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>💡</span> Smart Financial Insights
+        </h3>
+        <div class="grid-2" id="smartInsightsGrid">
+            <!-- Populated from actual data -->
+        </div>
+    </div>
+
+    <!-- CHART 1: INCOME VS EXPENSE -->
+    <div class="chart-card">
+        <div class="chart-header">
+            <span class="chart-title">Income vs Expenses Comparison</span>
+            <span id="chartPeriodLabel" style="font-size: 12px; color: var(--text-muted);">Period Breakdown</span>
+        </div>
+        <div class="chart-container-inner" style="height: 280px;">
+            <canvas id="incomeExpenseChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 2-COLUMN: SPENDING TREND & CATEGORY DISTRIBUTION -->
+    <div class="grid-2">
+        <!-- Chart 2: Category Breakdown -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Category Spending Share</span>
+            </div>
+            <div class="chart-container-inner" style="height: 260px; display: flex; align-items: center; justify-content: center;">
+                <canvas id="categoryDonutChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 3: Spending Trend Over Time -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">Spending Trend Over Time</span>
+            </div>
+            <div class="chart-container-inner" style="height: 260px;">
+                <canvas id="spendingTrendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHART 4: ACCOUNT BALANCES -->
+    <div class="chart-card">
+        <div class="chart-header">
+            <span class="chart-title">Account Distribution</span>
+        </div>
+        <div class="chart-container-inner" style="height: 220px;">
+            <canvas id="accountsBarChart"></canvas>
+        </div>
+    </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/analytics.js"></script>
+</body>
+</html>

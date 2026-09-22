@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budgets & Limits — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Budget Management</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Set spending boundaries and avoid overspending</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- OVERALL MONTHLY BUDGET HERO -->
+    <div class="glass-panel" style="margin-bottom: 24px; border-color: rgba(255, 211, 106, 0.25);">
+        <div class="panel-header">
+            <span class="panel-title" style="font-size: 18px;">🎯 Overall Monthly Budget</span>
+            <button id="setOverallBudgetBtn" class="btn-secondary" style="font-size: 12px;">Edit Target ✏️</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 12px 0 6px;">
+            <span id="overallBudgetSpent" style="font-size: 28px; font-weight: 800; font-family: 'Outfit', sans-serif;">₹0</span>
+            <span id="overallBudgetLimit" style="font-size: 16px; color: var(--text-secondary);">Limit: ₹0</span>
+        </div>
+
+        <div class="progress-track" style="height: 12px;">
+            <div id="overallProgressBar" class="progress-fill safe" style="width: 0%;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 8px;">
+            <span id="overallRemainingText">Remaining: ₹0</span>
+            <span id="overallPercentText">0% used</span>
+        </div>
+    </div>
+
+    <!-- CATEGORY BUDGETS SECTION -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 style="font-size: 18px; font-weight: 700; font-family: 'Outfit', sans-serif;">Category Budgets</h3>
+        <button id="addCategoryBudgetBtn" class="desktop-add-btn" style="padding: 6px 14px;">+ Add Category Budget</button>
+    </div>
+
+    <div id="categoryBudgetsList">
+        <!-- Populated by budgets.js -->
+    </div>
+
+</main>
+
+<!-- SET BUDGET MODAL -->
+<div id="budgetModal" class="modal modal-hidden">
+<div class="modal-content">
+    <h2 id="budgetModalTitle">Set Budget Target</h2>
+
+    <div class="setup-field">
+        <label>Budget Scope</label>
+        <select id="budgetCategorySelect">
+            <option value="Overall">🎯 Overall Monthly Budget</option>
+            <option value="food">🍔 Food</option>
+            <option value="transport">🚗 Transport</option>
+            <option value="shopping">🛍️ Shopping</option>
+            <option value="bills">🧾 Bills & Utilities</option>
+            <option value="entertainment">🎬 Entertainment</option>
+            <option value="health">💊 Health & Medical</option>
+            <option value="education">📚 Education</option>
+            <option value="groceries">🛒 Groceries</option>
+            <option value="travel">✈️ Travel</option>
+            <option value="subscriptions">📺 Subscriptions</option>
+            <option value="other">💸 Other</option>
+        </select>
+    </div>
+
+    <div class="setup-field">
+        <label>Monthly Spending Limit</label>
+        <input id="budgetAmountInput" type="number" step="any" placeholder="e.g. 15000">
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button id="cancelBudgetBtn" class="btn-secondary" style="flex: 1;">Cancel</button>
+        <button id="saveBudgetBtn" class="modal-submit-btn" style="flex: 1; margin: 0;">Save Budget</button>
+    </div>
+</div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/budgets.js"></script>
+</body>
+</html>

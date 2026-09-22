@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Welcome</title>
+<title>Welcome — Expense Tracker</title>
+<meta name="theme-color" content="#0b1435">
 
 <link rel="stylesheet" href="../css/welcome.css">
 </head>
@@ -13,27 +13,73 @@
 
 <div class="container">
 
+    <div class="brand-badge">⚡ EXPENSE TRACKER BY ATS</div>
+
     <h1 id="welcomeText">
-        Welcome, <input id="username" type="text" value="User" />
+        Welcome, <input id="username" type="text" value="User" placeholder="Your Name" />
     </h1>
 
     <div id="incomeSection" class="hidden">
 
-        <p class="subtitle">Select your income type</p>
+        <p class="subtitle">Personalize your financial tracking setup</p>
+
+        <!-- Preference controls -->
+        <div class="setup-grid">
+            <div class="setup-field">
+                <label>Preferred Currency</label>
+                <select id="currencySelect" class="setup-input">
+                    <option value="INR|₹" selected>₹ Indian Rupee (INR)</option>
+                    <option value="USD|$">$ US Dollar (USD)</option>
+                    <option value="EUR|€">€ Euro (EUR)</option>
+                    <option value="GBP|£">£ British Pound (GBP)</option>
+                    <option value="AED|AED">AED UAE Dirham</option>
+                    <option value="CAD|C$">C$ Canadian Dollar</option>
+                    <option value="AUD|A$">A$ Australian Dollar</option>
+                </select>
+            </div>
+
+            <div class="setup-field">
+                <label>Starting Balance (Optional)</label>
+                <input id="initialBalance" type="number" class="setup-input" placeholder="0" value="0">
+            </div>
+
+            <div class="setup-field">
+                <label>Monthly Budget Target (Optional)</label>
+                <input id="monthlyBudget" type="number" class="setup-input" placeholder="e.g. 25000">
+            </div>
+        </div>
+
+        <p class="freq-heading">Choose your primary tracking interval</p>
 
         <div class="cards">
+            <div class="card" data-type="daily">
+                <span class="card-icon">📅</span>
+                <span class="card-label">Daily Tracker</span>
+            </div>
+            <div class="card" data-type="weekly">
+                <span class="card-icon">📆</span>
+                <span class="card-label">Weekly Tracker</span>
+            </div>
+            <div class="card active-card" data-type="monthly">
+                <span class="card-icon">🗓</span>
+                <span class="card-label">Monthly Tracker</span>
+            </div>
+            <div class="card" data-type="yearly">
+                <span class="card-icon">📊</span>
+                <span class="card-label">Yearly Tracker</span>
+            </div>
+        </div>
 
-            <div class="card" data-type="daily">Daily</div>
-            <div class="card" data-type="weekly">Weekly</div>
-            <div class="card" data-type="monthly">Monthly</div>
-            <div class="card" data-type="yearly">Yearly</div>
-
+        <div class="setup-actions">
+            <button id="continueBtn" class="primary-btn">Launch Dashboard 🚀</button>
+            <button id="skipBtn" class="secondary-btn">Skip to Dashboard</button>
         </div>
 
     </div>
 
 </div>
 
+<script src="../js/storage.js"></script>
 <script src="../js/welcome.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>

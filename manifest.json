@@ -1,15 +1,35 @@
 {
-  "name": "Expense Tracker",
-  "short_name": "Expenses",
+  "name": "Expense Tracker — Track. Save. Grow.",
+  "short_name": "ExpenseTracker",
+  "description": "Modern personal finance application with lightning-fast analytics, budgets, and smart insights. By ATS.",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "background_color": "#030712",
+  "theme_color": "#0b1435",
   "icons": [
     {
       "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "html/dashboard.html",
+      "description": "View financial command center"
+    },
+    {
+      "name": "Add Transaction",
+      "url": "html/daily.html#add",
+      "description": "Record income or expense"
+    },
+    {
+      "name": "Analytics",
+      "url": "html/analytics.html",
+      "description": "View financial charts and trends"
     }
   ]
 }

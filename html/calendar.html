@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Select Date</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Date — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+<link rel="stylesheet" href="../css/app.css">
+<style>
+.calendar-card {
+    max-width: 380px;
+    margin: 80px auto 20px;
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 211, 106, 0.25);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+.quick-date-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+.quick-chip {
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.quick-chip:hover {
+    background: rgba(255, 211, 106, 0.2);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+.date-native-input {
+    width: 100%;
+    padding: 14px;
+    background: rgba(4, 9, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    margin: 12px 0 20px;
+}
+.date-native-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 12px var(--gold-glow);
+}
+</style>
 </head>
 
-<body style="font-family:sans-serif; text-align:center; padding:40px;">
+<body>
 
-<h2>Select Date</h2>
+<div class="calendar-card">
+    <div style="font-size: 40px; margin-bottom: 8px;">📅</div>
+    <h2 style="font-family: 'Outfit', sans-serif; margin-bottom: 6px;">Select Date</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Pick any date to review daily activity</p>
 
-<input type="date" id="datePicker">
+    <input type="date" id="datePicker" class="date-native-input">
 
-<br><br>
+    <div class="quick-date-chips">
+        <button class="quick-chip" onclick="setPresetDate(0)">Today</button>
+        <button class="quick-chip" onclick="setPresetDate(-1)">Yesterday</button>
+        <button class="quick-chip" onclick="setPresetDate(-7)">7 Days Ago</button>
+        <button class="quick-chip" onclick="setFirstOfMonth()">1st of Month</button>
+    </div>
 
-<button onclick="goBack()">View Data</button>
+    <button onclick="goBack()" class="modal-submit-btn" style="width: 100%; margin-top: 10px;">View Data 🚀</button>
+    <button onclick="window.history.back()" class="btn-secondary" style="width: 100%; margin-top: 10px;">Cancel</button>
+</div>
 
 <script src="../js/calendar.js"></script>
 

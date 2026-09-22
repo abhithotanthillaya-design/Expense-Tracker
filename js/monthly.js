@@ -30,8 +30,15 @@ while (weekStart < monthEnd) {
 
     weekRows.push(`
         <a class="period-row period-link" href="weekly.html" data-week="${dateKey(weekStart)}">
-            <span>Week ${weekRows.length + 1}<small>${formatDate(weekStart, { day: "numeric", month: "short" })} - ${formatDate(addDays(weekEnd, -1), { day: "numeric", month: "short" })}</small></span>
-            <span>+ ${formatCurrency(summary.income)} &nbsp; - ${formatCurrency(summary.expense)}</span>
+            <div>
+                <span style="font-weight: 600;">Week ${weekRows.length + 1}</span>
+                <small style="opacity: 0.65;">${formatDate(weekStart, { day: "numeric", month: "short" })} - ${formatDate(addDays(weekEnd, -1), { day: "numeric", month: "short" })}</small>
+            </div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 14px;">
+                <span style="color: var(--income); font-weight: 600;">+ ${formatCurrency(summary.income)}</span>
+                <span style="opacity: 0.4; margin: 0 4px;">&bull;</span>
+                <span style="color: var(--expense); font-weight: 600;">- ${formatCurrency(summary.expense)}</span>
+            </div>
         </a>
     `);
     weekStart = weekEnd;
@@ -39,7 +46,9 @@ while (weekStart < monthEnd) {
 renderPeriodRows(document.getElementById("breakdownList"), weekRows, "No weeks in this period");
 
 document.querySelectorAll("[data-week]").forEach(link => {
-    link.onclick = () => localStorage.setItem("selectedWeekStart", link.dataset.week);
+    link.addEventListener("click", () => {
+        localStorage.setItem("selectedWeekStart", link.dataset.week);
+    });
 });
 
 document.getElementById("previousPeriod").onclick = () => {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recurring Transactions — Expense Tracker</title>
+<meta name="theme-color" content="#08102d">
+
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="top-actions">
+        <button id="menuBtn" class="glass-btn" title="Open Menu">☰</button>
+    </div>
+    <h2>Recurring Transactions</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Automate subscriptions, salaries, rent, and recurring bills</p>
+</header>
+
+<div id="menuPopup" class="home-menu hidden">
+    <!-- Managed by nav.js -->
+</div>
+
+<main class="page-container">
+
+    <!-- TOP ACTIONS & DUE COUNTDOWN BANNER -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+        <span id="recurringSummaryCount" style="font-size: 14px; font-weight: 600; color: var(--gold);">Active Subscriptions: 0</span>
+        <button id="addRecurringBtn" class="desktop-add-btn">+ Add Recurring Entry</button>
+    </div>
+
+    <!-- RECURRING LIST -->
+    <div id="recurringListContainer">
+        <!-- Populated by recurring.js -->
+    </div>
+
+</main>
+
+<!-- ADD / EDIT RECURRING MODAL -->
+<div id="recurringModal" class="modal modal-hidden">
+<div class="modal-content">
+    <h2 id="recurringModalTitle">Add Recurring Item</h2>
+
+    <div class="type-toggle">
+        <button id="recExpenseBtn" class="active">Expense</button>
+        <button id="recIncomeBtn">Income</button>
+    </div>
+
+    <input id="recTitleInput" placeholder="Title (e.g. Netflix, Rent, Salary)">
+
+    <input id="recAmountInput" type="number" step="any" placeholder="Amount">
+
+    <div class="setup-field">
+        <label>Frequency</label>
+        <select id="recFrequencySelect">
+            <option value="monthly" selected>Monthly</option>
+            <option value="weekly">Weekly</option>
+            <option value="daily">Daily</option>
+            <option value="yearly">Yearly</option>
+        </select>
+    </div>
+
+    <div class="setup-field">
+        <label>Category</label>
+        <select id="recCategorySelect">
+            <option value="subscriptions">📺 Subscriptions</option>
+            <option value="bills">🧾 Bills & Utilities</option>
+            <option value="rent">🏠 Rent / Housing</option>
+            <option value="salary">💰 Salary / Wage</option>
+            <option value="education">📚 Education / Tuition</option>
+            <option value="gym">🏋️ Gym / Fitness</option>
+            <option value="other">💸 Other</option>
+        </select>
+    </div>
+
+    <div class="setup-field">
+        <label>Account</label>
+        <select id="recAccountSelect">
+            <!-- Populated from accounts -->
+        </select>
+    </div>
+
+    <div class="setup-field">
+        <label>Next Due Date</label>
+        <input id="recNextDateInput" type="date">
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; margin: 6px 0;">
+        <input type="checkbox" id="recAutoRecordCheck" style="width: auto;" checked>
+        <label for="recAutoRecordCheck" style="font-size: 13px; color: var(--text-secondary); cursor: pointer;">Automatically record when due</label>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button id="cancelRecurringBtn" class="btn-secondary" style="flex: 1;">Cancel</button>
+        <button id="saveRecurringBtn" class="modal-submit-btn" style="flex: 1; margin: 0;">Save Recurring</button>
+    </div>
+</div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/ui-feedback.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/recurring.js"></script>
+</body>
+</html>

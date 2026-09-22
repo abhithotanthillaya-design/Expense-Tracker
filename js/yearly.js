@@ -21,15 +21,24 @@ for (let month = 0; month < 12; month += 1) {
 
     monthRows.push(`
         <a class="period-row period-link" href="monthly.html" data-month="${year}-${String(month + 1).padStart(2, "0")}">
-            <span>${formatDate(monthStart, { month: "long" })}</span>
-            <span>+ ${formatCurrency(summary.income)} &nbsp; - ${formatCurrency(summary.expense)}</span>
+            <div>
+                <span style="font-weight: 600;">${formatDate(monthStart, { month: "long" })}</span>
+                <small style="opacity: 0.65;">${year}</small>
+            </div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 14px;">
+                <span style="color: var(--income); font-weight: 600;">+ ${formatCurrency(summary.income)}</span>
+                <span style="opacity: 0.4; margin: 0 4px;">&bull;</span>
+                <span style="color: var(--expense); font-weight: 600;">- ${formatCurrency(summary.expense)}</span>
+            </div>
         </a>
     `);
 }
 renderPeriodRows(document.getElementById("breakdownList"), monthRows, "No months in this period");
 
 document.querySelectorAll("[data-month]").forEach(link => {
-    link.onclick = () => localStorage.setItem("selectedMonth", link.dataset.month);
+    link.addEventListener("click", () => {
+        localStorage.setItem("selectedMonth", link.dataset.month);
+    });
 });
 
 document.getElementById("previousPeriod").onclick = () => {

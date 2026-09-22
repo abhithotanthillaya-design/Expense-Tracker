@@ -1,82 +1,115 @@
-.period-controls{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:18px;
-padding:10px 20px 0;
+/* ==========================================================================
+   PERIOD VIEWS STYLES (css/period.css)
+   ========================================================================== */
+
+.period-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px 6px;
 }
 
-.period-controls button{
-border:none;
-border-radius:8px;
-background:#1f2d70;
-color:white;
-padding:8px 14px;
-cursor:pointer;
+.period-controls button {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(14, 22, 60, 0.7);
+    backdrop-filter: var(--glass-blur);
+    color: white;
+    padding: 9px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
-.period-controls button:hover{
-background:#2d3c88;
+.period-controls button:hover {
+    background: rgba(255, 211, 106, 0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
 }
 
-.period-range{
-margin:6px 0 0;
-opacity:0.7;
+.period-controls button:active {
+    transform: scale(0.97);
 }
 
-.period-section{
-max-width:600px;
-margin:auto;
-padding:10px 20px;
+.period-range {
+    margin: 6px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.3px;
 }
 
-.period-section h3{
-opacity:0.8;
-margin:10px 0;
+.period-section {
+    max-width: 800px;
+    margin: auto;
+    padding: 12px 20px;
 }
 
-.period-list{
-display:flex;
-flex-direction:column;
-gap:10px;
+.period-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-secondary);
+    margin: 14px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.period-row{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:16px;
-padding:14px 18px;
-background:#101a46;
-border-radius:12px;
-color:white;
+.period-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.period-row small{
-display:block;
-opacity:0.6;
-margin-top:4px;
+.period-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    color: white;
+    transition: all 0.22s ease;
 }
 
-.period-link{
-text-decoration:none;
-transition:transform 0.2s ease, background 0.2s ease;
+.period-row small {
+    display: block;
+    opacity: 0.65;
+    margin-top: 3px;
 }
 
-.period-link:hover{
-transform:translateX(4px);
-background:#182357;
+.period-link {
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.period-empty{
-opacity:0.6;
-text-align:center;
-padding:20px;
+.period-link:hover {
+    transform: translateX(4px);
+    background: var(--card-bg-elevated);
+    border-color: rgba(255, 211, 106, 0.3);
 }
 
-@media (max-width:600px){
-.period-row{
-align-items:flex-start;
-font-size:14px;
+.period-empty {
+    opacity: 0.6;
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(14, 22, 60, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
 }
+
+@media (max-width: 600px) {
+    .period-row {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
 }
