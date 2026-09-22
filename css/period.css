@@ -1,0 +1,82 @@
+.period-controls{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:18px;
+padding:10px 20px 0;
+}
+
+.period-controls button{
+border:none;
+border-radius:8px;
+background:#1f2d70;
+color:white;
+padding:8px 14px;
+cursor:pointer;
+}
+
+.period-controls button:hover{
+background:#2d3c88;
+}
+
+.period-range{
+margin:6px 0 0;
+opacity:0.7;
+}
+
+.period-section{
+max-width:600px;
+margin:auto;
+padding:10px 20px;
+}
+
+.period-section h3{
+opacity:0.8;
+margin:10px 0;
+}
+
+.period-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.period-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+padding:14px 18px;
+background:#101a46;
+border-radius:12px;
+color:white;
+}
+
+.period-row small{
+display:block;
+opacity:0.6;
+margin-top:4px;
+}
+
+.period-link{
+text-decoration:none;
+transition:transform 0.2s ease, background 0.2s ease;
+}
+
+.period-link:hover{
+transform:translateX(4px);
+background:#182357;
+}
+
+.period-empty{
+opacity:0.6;
+text-align:center;
+padding:20px;
+}
+
+@media (max-width:600px){
+.period-row{
+align-items:flex-start;
+font-size:14px;
+}
+}

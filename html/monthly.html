@@ -3,117 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Monthly Tracker</title>
-
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="../css/app.css">
+<link rel="stylesheet" href="../css/period.css">
 </head>
-
 <body>
-
 <header class="header">
-
-<div class="top-actions">
-
-<button id="menuBtn" class="glass-btn">
-â˜°
-</button>
-
-</div>
-
+<div class="top-actions"><button id="menuBtn" class="glass-btn">☰</button></div>
 <h2 id="accountName">Personal Account</h2>
-<p id="todayDate" class="clickable-date"></p>
+<p id="periodTitle">Monthly Tracker</p>
+<p id="periodRange" class="period-range"></p>
 </header>
 <div id="menuPopup" class="home-menu hidden">
-
-<a href="welcome.html">ðŸ  Home</a>
-
-<a href="#">âš™ Settings</a>
-
-<a href="#">ðŸ“Š Analytics</a>
-
+<a href="welcome.html">🏠 Home</a>
+<a href="daily.html">📅 Daily</a>
+<a href="weekly.html">📆 Weekly</a>
+<a href="yearly.html">📊 Yearly</a>
 </div>
-
+<div class="period-controls">
+<button id="previousPeriod">← Previous</button>
+<button id="nextPeriod">Next →</button>
+</div>
 <section class="summary">
-
-<div class="summary-card">
-<h3>Income</h3>
-<p id="incomeTotal">₹0</p>
-</div>
-
-<div class="summary-card">
-<h3>Expenses</h3>
-<p id="expenseTotal">₹0</p>
-</div>
-
-<div class="summary-card balance">
-<h3>Balance</h3>
-<p id="balanceTotal">₹0</p>
-</div>
-
+<div class="summary-card"><h3>Income</h3><p id="incomeTotal">₹0</p></div>
+<div class="summary-card"><h3>Expenses</h3><p id="expenseTotal">₹0</p></div>
+<div class="summary-card balance"><h3>Balance</h3><p id="balanceTotal">₹0</p></div>
 </section>
-
-<section class="timeline">
-
-<h3 class="timeline-title">Recent Activity</h3>
-
-<div class="filters">
-    <button data-filter="all" class="active">All</button>
-    <button data-filter="income">Income</button>
-    <button data-filter="expense">Expense</button>
-</div>
-
-<div id="transactionList"></div>
-
+<section class="period-section">
+<h3>Weekly Summary</h3>
+<div id="breakdownList" class="period-list"></div>
 </section>
-
-<button id="fab">+</button>
-
-<div id="transactionModal" class="modal modal-hidden">
-
-<div class="modal-content">
-
-<h2>Add Transaction</h2>
-
-<div class="type-toggle">
-<button id="incomeBtn" class="active">Income</button>
-<button id="expenseBtn">Expense</button>
-</div>
-
-<div class="category-row">
-    <span id="categoryIcon">💸</span>
-
-    <select id="category">
-        <option value="">Select Category</option>
-        <option value="wage">Wage</option>
-        <option value="stocks">Stocks</option>
-        <option value="food">Food</option>
-        <option value="travel">Travel</option>
-        <option value="shopping">Shopping</option>
-        <option value="other">Other</option>
-    </select>
-</div>
-<input id="customCategory"
-placeholder="Enter category"
-class="hidden">
-
-<input id="amount" type="number" placeholder="Amount">
-
-<div class="quick-amounts">
-<button data-amount="100">₹100</button>
-<button data-amount="500">₹500</button>
-<button data-amount="1000">₹1000</button>
-</div>
-
-<input id="note" placeholder="Note (optional)">
-
-<button id="saveTransaction">Save</button>
-
-</div>
-</div>
-
+<section class="period-section">
+<h3>Category Spending</h3>
+<div id="categoryList" class="period-list"></div>
+</section>
 <script src="../js/storage.js"></script>
-<script src="../js/app.js"></script>
-
+<script src="../js/category-utils.js"></script>
+<script src="../js/period-utils.js"></script>
+<script src="../js/period-view.js"></script>
+<script src="../js/monthly.js"></script>
 </body>
 </html>

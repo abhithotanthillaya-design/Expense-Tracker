@@ -1,3 +1,28 @@
+function getCustomCategories() {
+    return JSON.parse(
+        localStorage.getItem("customCategories")
+    ) || [];
+}
+
+function saveCustomCategory(name, icon) {
+    const categories = getCustomCategories();
+    const alreadyExists = categories.find(category =>
+        category.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (!alreadyExists) {
+        categories.push({
+            name,
+            icon
+        });
+
+        localStorage.setItem(
+            "customCategories",
+            JSON.stringify(categories)
+        );
+    }
+}
+
 function getSelectedDateKey() {
 
     const selectedDate = localStorage.getItem("selectedDate");
@@ -43,4 +68,10 @@ function deleteTransaction(id) {
     transactions = transactions.filter(t => t.id !== id);
 
     localStorage.setItem(key, JSON.stringify(transactions));
+}
+
+function getAllTransactions() {
+    return Object.keys(localStorage)
+        .filter(key => key.startsWith("transactions_"))
+        .flatMap(key => JSON.parse(localStorage.getItem(key)) || []);
 }
